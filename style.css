@@ -1,0 +1,181 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto Slab", serif;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #fff;
+    overflow: hidden;
+    transition: background-image 1s ease-in-out;
+    background-size: cover;
+    background-position: center;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)),
+                      url(https://images.unsplash.com/photo-1592210454359-9043f067919b?q=80&w=2070&auto=format&fit=crop);
+}
+
+/* --- Glassmorphism --- */
+#big-box {
+    background: rgba(255, 255, 255, 0.08); 
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    backdrop-filter: blur(12px) saturate(180%);
+    border-radius: 30px;
+    padding: 30px;
+    width: 90%;
+    max-width: 480px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    transition: all 0.4s ease;
+    z-index: 10;
+}
+
+#search {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.city-input {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    padding: 14px 22px;
+    border-radius: 50px;
+    font-size: 18px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: 0.3s;
+}
+
+.city-input:focus {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-color: #5eb0ff;
+}
+
+.button-search {
+    border: none;
+    padding: 14px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #5eb0ff, #0ea5ed);
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+}
+
+.button-search:hover { transform: scale(1.1) rotate(5deg); }
+
+.img-search { width: 22px; filter: invert(1); }
+
+/* ---  Weather Results Area --- */
+#medium-box {
+    margin-top: 35px;
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+#medium-box.show {
+    display: block !important;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-family: "Josefin Sans", sans-serif;
+}
+
+#small-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 25px;
+}
+
+.temp_value {
+    font-size: 65px;
+    font-family: "Josefin Sans", sans-serif;
+    font-weight: 800;
+}
+
+.temp_value sup { font-size: 25px; top: -25px; position: relative; }
+
+.img-weather { width: 100px; height: 100px; }
+
+#other_infos {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    gap: 12px;
+}
+
+.info h2 { font-size: 11px; text-transform: uppercase; opacity: 0.7; }
+.info p { font-size: 18px; font-weight: 700; }
+
+#temp_max_icon { color: #ff5e5e; }
+#temp_min_icon { color: #5eb0ff; }
+#humidity_icon { color: #0ea5ed; }
+#wind_icon { color: #a78bfa; }
+
+/* ---  Weather variations --- */
+
+/* 01 - Clear sky */
+body.clima-01d, body.clima-01n {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), 
+    url(https://images.unsplash.com/photo-1506452819137-0422416856b8?q=80&w=1920&auto=format&fit=crop) !important;
+}
+
+/* 02, 03, 04 - Clouds */
+body.clima-02d, body.clima-02n, body.clima-03d, body.clima-03n, body.clima-04d, body.clima-04n {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), 
+    url(https://images.unsplash.com/photo-1534088568595-a066f410bcda?q=80&w=1920&auto=format&fit=crop) !important;
+}
+
+/* 09, 10, 11 - Rain and Storms */
+body.clima-09d, body.clima-09n, body.clima-10d, body.clima-10n, body.clima-11d, body.clima-11n {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), 
+    url(https://images.unsplash.com/photo-1534274988757-a28bf1f539cf?q=80&w=1920&auto=format&fit=crop) !important;
+}
+
+/* 13 - Snow */
+body.clima-13d, body.clima-13n {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)), 
+    url(https://images.unsplash.com/photo-1547372332-6a7516801931?q=80&w=1920&auto=format&fit=crop) !important;
+}
+
+/* 50 - Fog */
+body.clima-50d, body.clima-50n {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), 
+    url(https://images.unsplash.com/photo-1487621167305-5d248087c724?q=80&w=1920&auto=format&fit=crop) !important;
+}
+
+#alert {
+    display: none;
+    background: rgba(255, 77, 77, 0.8);
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 15px;
+    text-align: center;
+}
